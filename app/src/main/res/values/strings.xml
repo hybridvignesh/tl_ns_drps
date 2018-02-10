@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">செய்தித்துளிகள்</string>
+
+    <!--Pages-->
+    <string name="home">முகப்பு</string>
+    <string name="india">இந்தியா</string>
+    <string name="world">உலகம்</string>
+    <string name="bussiness">வணிகம்</string>
+    <string name="sports">விளையாட்டு</string>
+    <string name="agri">விவசாயம்</string>
+    <string name="political">அரசியல்</string>
+    <string name="cinema">சினிமா</string>
+    <string name="tech">தொழில்நுட்பம்</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity_image_trans">imagetransit</string>
+    <string name="source">source: புதியதலைமுறை</string>
+    <string name="send_to">Share News . .</string>
+</resources>

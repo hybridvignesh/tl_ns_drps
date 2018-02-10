@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "599548601309",
+    "firebase_url": "https://tamilnewsdrops.firebaseio.com",
+    "project_id": "tamilnewsdrops",
+    "storage_bucket": "tamilnewsdrops.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599548601309:android:4b28a3f20fd4c32f",
+        "android_client_info": {
+          "package_name": "vnapps.com.tamilnewsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599548601309-0ctmf21g6tm4hsd2mo6po662strhheep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vnapps.com.tamilnewsapp",
+            "certificate_hash": "89ea350abe5453deb344caa7c545e694df1ce901"
+          }
+        },
+        {
+          "client_id": "599548601309-vq8r3s7ror0o1p293qk6tuqiptr84o21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhGjHoikw9wXPJU8KLJ7InQMTc4vrvFBE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599548601309-vq8r3s7ror0o1p293qk6tuqiptr84o21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
