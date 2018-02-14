@@ -13,22 +13,26 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import vnapps.com.tamilnewsapp.R;
 import vnapps.com.tamilnewsapp.configs.AppController;
 import vnapps.com.tamilnewsapp.dependencies.interfaces.ApiService;
+import vnapps.com.tamilnewsapp.intefaces.BaseActivityInterFace;
 import vnapps.com.tamilnewsapp.pages.fragments.AgriFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.BusinessFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.CinemaFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.HomeFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.IndiaFragment;
+import vnapps.com.tamilnewsapp.pages.fragments.MemesFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.PoliticalFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.SportsFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.TechnicalFragment;
 import vnapps.com.tamilnewsapp.pages.fragments.WorldFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BaseActivityInterFace {
 
     @Inject
     ApiService apiService;
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentAdapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add(R.string.home, HomeFragment.class)
+                .add(R.string.memes, MemesFragment.class)
                 .add(R.string.political, PoliticalFragment.class)
                 .add(R.string.india, IndiaFragment.class)
                 .add(R.string.world, WorldFragment.class)
@@ -79,4 +84,8 @@ public class MainActivity extends AppCompatActivity {
         viewPagerTab.setViewPager(viewPager);
     }
 
+    @Override
+    public void changeToMemeDetailedFragment(int position, List<String> memeList) {
+
+    }
 }

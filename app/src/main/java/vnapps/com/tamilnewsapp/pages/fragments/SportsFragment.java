@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 
@@ -29,13 +30,16 @@ import vnapps.com.tamilnewsapp.adapters.NewsAdapter;
 import vnapps.com.tamilnewsapp.configs.AppController;
 import vnapps.com.tamilnewsapp.configs.CommonMethods;
 import vnapps.com.tamilnewsapp.dependencies.interfaces.ApiService;
+import vnapps.com.tamilnewsapp.dependencies.interfaces.ServiceListener;
+import vnapps.com.tamilnewsapp.main.JsonResponse;
 import vnapps.com.tamilnewsapp.models.news.NewsFeeds;
 import vnapps.com.tamilnewsapp.utils.OptimizedNews;
+import vnapps.com.tamilnewsapp.utils.RequestCallback;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SportsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class SportsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, ServiceListener {
 
     @Inject
     ApiService apiService;
@@ -52,6 +56,7 @@ public class SportsFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private NewsAdapter newsAdapter;
     private ProgressBar loader;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private RelativeLayout networkFailure;
 
     public SportsFragment() {
         // Required empty public constructor
@@ -73,36 +78,14 @@ public class SportsFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void initViews(View view) {
         rvSports = view.findViewById(R.id.rv_sports);
         loader = view.findViewById(R.id.pgs_loader);
+        networkFailure = view.findViewById(R.id.rlt_network);
         swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private void getNewsFeeds() {
-        commonMethods.hideLoader(loader);
-        apiService.getSportsNews().enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                commonMethods.hideLoader(loader);
-                String xmlString = null;
-                try {
-                    xmlString = response.body().string();
-                    XmlToJson xmlToJson = new XmlToJson.Builder(xmlString).build();
-                    NewsFeeds newsFeeds = gson.fromJson(xmlToJson.toString(), NewsFeeds.class);
-                    setupAdapter(newsFeeds);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                commonMethods.hideLoader(loader);
-                Log.e("Error", t.getMessage());
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+        commonMethods.showLoader(loader);
+        apiService.getSportsNews().enqueue(new RequestCallback(this));
 
     }
 
@@ -116,4 +99,31 @@ public class SportsFragment extends Fragment implements SwipeRefreshLayout.OnRef
     public void onRefresh() {
         getNewsFeeds();
     }
+
+    @Override
+    public void onSuccess(JsonResponse jsonResp, String data) {
+        commonMethods.hideLoader(loader);
+        rvSports.setVisibility(View.VISIBLE);
+        networkFailure.setVisibility(View.GONE);
+        try {
+            XmlToJson xmlToJson = new XmlToJson.Builder(jsonResp.getStrResponse()).build();
+            NewsFeeds newsFeeds = gson.fromJson(xmlToJson.toString(), NewsFeeds.class);
+            setupAdapter(newsFeeds);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onFailure(JsonResponse jsonResp, String data) {
+        commonMethods.hideLoader(loader);
+        swipeRefreshLayout.setRefreshing(false);
+        if (data.equals(getResources().getString(R.string.network_failure))) {
+            rvSports.setVisibility(View.GONE);
+            networkFailure.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

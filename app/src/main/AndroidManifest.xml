@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".pages.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".pages.activities.MainActivity"/>
-
-        <activity android:name=".pages.activities.NewsDetailsActivity" />
+        <activity
+            android:name=".pages.activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pages.activities.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -39,6 +39,10 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity
+            android:name=".pages.activities.MemeDetailActivity"
+            android:screenOrientation="portrait" />
+        <service android:name=".utils.DownloadService" />
     </application>
 
 </manifest>

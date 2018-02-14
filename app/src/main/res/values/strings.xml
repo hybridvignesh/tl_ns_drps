@@ -4,6 +4,7 @@
     <!--Pages-->
     <string name="home">முகப்பு</string>
     <string name="india">இந்தியா</string>
+    <string name="memes">மீம்ஸ்</string>
     <string name="world">உலகம்</string>
     <string name="bussiness">வணிகம்</string>
     <string name="sports">விளையாட்டு</string>
@@ -17,4 +18,8 @@
     <string name="activity_image_trans">imagetransit</string>
     <string name="source">source: புதியதலைமுறை</string>
     <string name="send_to">Share News . .</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="network_failure">Networf Failuire</string>
+    <string name="network_failure_nsg">நெட் இல்லப்பா..</string>
+    <string name="meme_url_format">http://atriangleinc.in/upload/images/%1s.jpg</string>
 </resources>

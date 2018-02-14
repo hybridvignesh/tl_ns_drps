@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vnapps.com.tamilnewsapp.pages.activities.MemeDetailActivity">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_meme_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/add_detailsview"
+        android:layout_below="@+id/title_bar" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/add_detailsview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5022054076609524/6728612380" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_detailsview"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        fab:menu_icon="@drawable/ic_cloud_download_black_24dp"
+        fab:menu_animationDelayPerItem="0"
+        android:layout_marginRight="4dp"
+        fab:menu_colorNormal="@color/red"
+        fab:menu_colorPressed="#c62828"
+        fab:menu_colorRipple="#931616"
+        fab:menu_labels_hideAnimation="@anim/jump_to_down"
+        fab:menu_labels_showAnimation="@anim/jump_from_down"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        fab:menu_shadowColor="#444">
+
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_download"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_file_download_black_24dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_share"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_share_black_24dp" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>
